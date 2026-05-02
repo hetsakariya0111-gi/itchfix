@@ -165,6 +165,22 @@ npm run dev
 
 ---
 
+### 🌐 DEPLOYMENT (VERCEL)
+
+#### 🎨 Frontend Deployment
+1. Go to [Vercel](https://vercel.com/) and click **Add New Project**.
+2. Import your GitHub repository `itchfix`.
+3. In the **Root Directory** setting, click **Edit** and select the `frontend` folder.
+4. Framework Preset should be **Vite**.
+5. Click **Deploy**.
+
+#### ⚙️ Backend Deployment (Optional)
+1. Repeat the steps above but select the `backend` folder as the **Root Directory**.
+2. Vercel will automatically detect the `vercel.json` and deploy it as a Serverless Function.
+3. Make sure to add your **Environment Variables** (MONGODB_URI, JWT_SECRET, etc.) in the Vercel Dashboard.
+
+---
+
 ### 🔮 NEXT PHASE: FUTURE STEPS
 • **AI Fraud Detection**: Real-time analysis of transaction patterns.  
 • **Mobile App**: Native iOS/Android apps for trade-on-the-go.  
