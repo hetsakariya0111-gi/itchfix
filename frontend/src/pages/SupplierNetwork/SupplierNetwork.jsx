@@ -38,6 +38,8 @@ export default function SupplierNetwork() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [viewType, setViewType] = useState('grid');
   const [toasts, setToasts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
 
   const addToast = (message, type = 'success') => {
     const id = Date.now();
@@ -55,6 +57,17 @@ export default function SupplierNetwork() {
     const matchesCategory = activeCategory === 'All' || supplier.category === activeCategory;
     return matchesSearch && matchesCategory;
   });
+
+  // Pagination Logic
+  const totalPages = Math.ceil(filteredSuppliers.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredSuppliers.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <div className="p-4 md:p-6 lg:p-8 space-y-6 md:space-y-8 max-w-7xl mx-auto">
@@ -145,7 +158,7 @@ export default function SupplierNetwork() {
       {/* Content Grid/List */}
       {viewType === 'grid' ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {filteredSuppliers.map(supplier => (
+          {currentItems.map(supplier => (
             <SupplierCard key={supplier.id} {...supplier} onClick={() => addToast(`Opening ${supplier.name}...`, 'info')} />
           ))}
         </div>
@@ -161,7 +174,7 @@ export default function SupplierNetwork() {
               </tr>
             </thead>
             <tbody className="divide-y divide-border-main">
-              {filteredSuppliers.map(s => (
+              {currentItems.map(s => (
                 <tr key={s.id} className="hover:bg-white/5 transition-colors">
                   <td className="px-6 py-4">
                     <div className="font-bold text-text-primary text-sm">{s.name}</div>
@@ -197,7 +210,13 @@ export default function SupplierNetwork() {
         </div>
       )}
 
-      <Pagination />
+      {filteredSuppliers.length > itemsPerPage && (
+        <Pagination 
+          currentPage={currentPage} 
+          totalPages={totalPages} 
+          onPageChange={handlePageChange} 
+        />
+      )}
     </div>
   );
 }
