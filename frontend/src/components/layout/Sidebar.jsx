@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { 
   LayoutDashboard, 
+  BarChart3,
   Users, 
   Lock, 
   MessageSquare, 
@@ -16,6 +17,7 @@ import {
 const Sidebar = () => {
   const navItems = [
     { name: 'Dashboard', icon: <LayoutDashboard size={18} />, path: '/dashboard' },
+    { name: 'Analytics', icon: <BarChart3 size={18} />, path: '/analytics' },
     { name: 'Reconciliation', icon: <RefreshCw size={18} />, path: '/reconciliation' },
     { name: 'Suppliers', icon: <Users size={18} />, path: '/suppliers' },
     { name: 'Escrow', icon: <Lock size={18} />, path: '/escrow' },
