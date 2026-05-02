@@ -117,7 +117,10 @@ const ProductGrid = ({ onAction }) => {
                 <p className="text-[9px] font-bold text-text-ghost uppercase tracking-widest">Price</p>
                 <p className="text-sm font-mono font-bold text-text-primary">{product.price}</p>
               </div>
-              <Button variant="ghost" size="sm" className="p-2 rounded-lg bg-page-bg" onClick={() => onAction(`Adding ${product.name} to inquiry...`, 'info')}>
+              <Button variant="ghost" size="sm" className="p-2 rounded-lg bg-page-bg" onClick={() => {
+                onAction(`${product.name} added to cart!`, 'success');
+                setTimeout(() => navigate('/checkout'), 1000);
+              }}>
                 <ArrowRight size={16} />
               </Button>
             </div>

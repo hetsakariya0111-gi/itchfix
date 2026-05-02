@@ -25,18 +25,23 @@ const disputesData = [
   { id: 'DSP-105', txn: 'TXN-9112', partner: 'Gujarat Chem', type: 'Quantity Shortage', status: 'pending', date: 'May 02, 2026' },
 ];
 
-const DisputesHeader = ({ onAction }) => (
-  <header className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-    <div className="space-y-1">
-      <Breadcrumbs items={[{ label: 'TrustBiz', path: '/' }, { label: 'Disputes & Mediation', path: '/disputes' }]} />
-      <h1 className="text-2xl md:text-3xl font-bold font-display text-text-primary tracking-tight">Resolution Center</h1>
-      <p className="text-text-muted text-xs md:text-sm">Manage disputes and access RBI-regulated mediation services.</p>
-    </div>
-    <Button variant="primary" size="sm" onClick={() => onAction('Opening new dispute wizard...', 'info')}>
-      <Plus size={16} className="mr-2" /> Raise Dispute
-    </Button>
-  </header>
-);
+import { useNavigate } from 'react-router-dom';
+
+const DisputesHeader = ({ onAction }) => {
+  const navigate = useNavigate();
+  return (
+    <header className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div className="space-y-1">
+        <Breadcrumbs items={[{ label: 'TrustBiz', path: '/' }, { label: 'Disputes & Mediation', path: '/disputes' }]} />
+        <h1 className="text-2xl md:text-3xl font-bold font-display text-text-primary tracking-tight">Resolution Center</h1>
+        <p className="text-text-muted text-xs md:text-sm">Manage disputes and access RBI-regulated mediation services.</p>
+      </div>
+      <Button variant="primary" size="sm" onClick={() => navigate('/support')}>
+        <Plus size={16} className="mr-2" /> Raise Dispute
+      </Button>
+    </header>
+  );
+};
 
 const DisputesStats = () => (
   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -59,6 +64,7 @@ const DisputesStats = () => (
 );
 
 const DisputesTable = ({ onAction }) => {
+  const navigate = useNavigate();
   const columns = [
     { header: 'Case ID', accessor: 'id', render: (val) => <span className="font-mono font-bold text-xs">{val}</span> },
     { header: 'Transaction', accessor: 'txn', render: (val) => <span className="font-mono text-[10px] text-text-muted">{val}</span> },
@@ -77,10 +83,10 @@ const DisputesTable = ({ onAction }) => {
       accessor: 'id',
       render: (id) => (
         <div className="flex items-center gap-2">
-          <button className="p-2 hover:bg-white/5 rounded-lg text-trust-teal transition-colors" onClick={() => onAction(`Opening chat for ${id}`, 'info')}>
+          <button className="p-2 hover:bg-white/5 rounded-lg text-trust-teal transition-colors" onClick={() => navigate('/support')}>
             <MessageSquare size={16} />
           </button>
-          <button className="p-2 hover:bg-white/5 rounded-lg text-text-ghost transition-colors" onClick={() => onAction(`Viewing evidence for ${id}`, 'info')}>
+          <button className="p-2 hover:bg-white/5 rounded-lg text-text-ghost transition-colors" onClick={() => navigate('/support')}>
             <FileText size={16} />
           </button>
         </div>

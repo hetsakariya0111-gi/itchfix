@@ -18,24 +18,28 @@ import Badge from '../../components/ui/Badge';
 import Toast from '../../components/ui/Toast';
 import SEO from '../../components/common/SEO';
 import Skeleton from '../../components/ui/Skeleton';
+import { useNavigate } from 'react-router-dom';
 
-const WalletHeader = ({ onAction }) => (
-  <header className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-    <div className="space-y-1">
-      <Breadcrumbs items={[{ label: 'TrustBiz', path: '/' }, { label: 'Business Wallet', path: '/wallet' }]} />
-      <h1 className="text-2xl md:text-3xl font-bold font-display text-text-primary tracking-tight">Business Wallet</h1>
-      <p className="text-text-muted text-xs md:text-sm">Manage your operational funds and instant escrow deposits.</p>
-    </div>
-    <div className="flex items-center gap-3">
-      <Button variant="ghost" size="sm" onClick={() => onAction('Opening withdrawal request...', 'info')}>
-        <ArrowDownLeft size={16} className="mr-2" /> Withdraw
-      </Button>
-      <Button variant="primary" size="sm" onClick={() => onAction('Opening add funds modal...', 'info')}>
-        <Plus size={16} className="mr-2" /> Add Funds
-      </Button>
-    </div>
-  </header>
-);
+const WalletHeader = ({ onAction }) => {
+  const navigate = useNavigate();
+  return (
+    <header className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div className="space-y-1">
+        <Breadcrumbs items={[{ label: 'TrustBiz', path: '/' }, { label: 'Business Wallet', path: '/wallet' }]} />
+        <h1 className="text-2xl md:text-3xl font-bold font-display text-text-primary tracking-tight">Business Wallet</h1>
+        <p className="text-text-muted text-xs md:text-sm">Manage your operational funds and instant escrow deposits.</p>
+      </div>
+      <div className="flex items-center gap-3">
+        <Button variant="ghost" size="sm" onClick={() => navigate('/transactions')}>
+          <ArrowDownLeft size={16} className="mr-2" /> Withdraw
+        </Button>
+        <Button variant="primary" size="sm" onClick={() => navigate('/marketplace')}>
+          <Plus size={16} className="mr-2" /> Add Funds
+        </Button>
+      </div>
+    </header>
+  );
+};
 
 const BalanceSection = () => (
   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -86,6 +90,7 @@ const BalanceSection = () => (
 );
 
 const WalletActivity = ({ onAction }) => {
+  const navigate = useNavigate();
   const activities = [
     { id: 'WLT-102', type: 'deposit', amount: '+ ₹5,00,000', status: 'completed', date: 'Today, 10:30 AM', via: 'Razorpay' },
     { id: 'WLT-101', type: 'withdrawal', amount: '- ₹1,20,000', status: 'pending', date: 'Yesterday', via: 'Bank Transfer' },
@@ -96,11 +101,11 @@ const WalletActivity = ({ onAction }) => {
     <section className="space-y-6">
       <div className="flex items-center justify-between px-2">
         <h3 className="text-lg font-display font-bold text-text-primary">Recent Wallet Activity</h3>
-        <button className="text-[11px] font-bold text-text-ghost uppercase tracking-widest hover:text-trust-teal" onClick={() => onAction('Opening full history...', 'info')}>View All</button>
+        <button className="text-[11px] font-bold text-text-ghost uppercase tracking-widest hover:text-trust-teal" onClick={() => navigate('/transactions')}>View All</button>
       </div>
       <div className="space-y-3">
         {activities.map((act) => (
-          <div key={act.id} className="bg-card-bg border border-border-main rounded-xl p-4 flex items-center justify-between group hover:border-trust-teal/30 transition-all cursor-pointer" onClick={() => onAction(`Viewing details for ${act.id}`, 'info')}>
+          <div key={act.id} className="bg-card-bg border border-border-main rounded-xl p-4 flex items-center justify-between group hover:border-trust-teal/30 transition-all cursor-pointer" onClick={() => navigate('/transactions')}>
             <div className="flex items-center gap-4">
               <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${
                 act.type === 'deposit' ? 'bg-trust-teal/10 text-trust-teal' : 

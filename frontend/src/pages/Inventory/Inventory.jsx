@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '../../components/common/SEO';
 import Skeleton from '../../components/ui/Skeleton';
@@ -71,3 +72,24 @@ export default function Inventory() {
     </div>
   );
 }
+
+const InventoryHeader = ({ onAction }) => {
+  const navigate = useNavigate();
+  return (
+    <header className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div className="space-y-1">
+        <Breadcrumbs items={[{ label: 'TrustBiz', path: '/' }, { label: 'Inventory', path: '/inventory' }]} />
+        <h1 className="text-2xl md:text-3xl font-bold font-display text-text-primary tracking-tight">Inventory Management</h1>
+        <p className="text-text-muted text-xs md:text-sm">Real-time stock monitoring and automated reorder alerts.</p>
+      </div>
+      <div className="flex items-center gap-3">
+        <Button variant="ghost" size="sm" onClick={() => navigate('/marketplace')}>
+          <History size={16} className="mr-2" /> Stock History
+        </Button>
+        <Button variant="primary" size="sm" onClick={() => navigate('/marketplace')}>
+          <Plus size={16} className="mr-2" /> Add Stock
+        </Button>
+      </div>
+    </header>
+  );
+};

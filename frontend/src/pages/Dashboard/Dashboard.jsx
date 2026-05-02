@@ -9,9 +9,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Toast from '../../components/ui/Toast';
 import Skeleton, { SkeletonCard } from '../../components/ui/Skeleton';
 
+import { useNavigate } from 'react-router-dom';
+
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [toasts, setToasts] = useState([]);
+  const [showTrustModal, setShowShowTrustModal] = useState(false);
 
   useEffect(() => {
     // Simulate initial data loading
@@ -73,7 +77,7 @@ const Dashboard = () => {
       render: (id) => (
         <button 
           className="text-[11px] font-bold text-trust-teal hover:underline uppercase tracking-wider"
-          onClick={() => addToast(`Opening details for ${id}...`, 'info')}
+          onClick={() => navigate('/transactions')}
         >
           View
         </button>
@@ -141,7 +145,7 @@ const Dashboard = () => {
             <h2 className="text-lg font-display font-bold text-text-primary">Recent Transactions</h2>
             <button 
               className="text-[11px] md:text-[12px] font-bold text-trust-teal hover:underline uppercase tracking-widest"
-              onClick={() => addToast('Navigating to full transaction history...', 'info')}
+              onClick={() => navigate('/transactions')}
             >
               View All
             </button>
@@ -202,7 +206,7 @@ const Dashboard = () => {
 
             <button 
               className="w-full py-3 bg-trust-teal text-page-bg rounded-radius-button text-[12px] font-bold uppercase tracking-widest hover:bg-trust-teal/90 transition-colors shadow-lg shadow-trust-teal/20"
-              onClick={() => addToast('Opening trust optimization guide...', 'info')}
+              onClick={() => navigate('/kyc')}
             >
               Boost Trust Score
             </button>
