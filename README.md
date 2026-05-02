@@ -108,18 +108,35 @@ The entire UI/UX of TrustBiz was meticulously designed in Figma. Every screen, i
 📦 itchfix
  ┣ 📂 frontend/                  # 🎨 React Application (Vite, Tailwind, Redux)
  ┃ ┣ 📂 src/
- ┃ ┃ ┣ 📂 components/            # UI Blocks, Layouts, Forms
- ┃ ┃ ┣ 📂 pages/                 # 20+ Route-level views (Dashboard, Wallet, etc.)
- ┃ ┃ ┣ 📂 services/              # API clients & state slices
- ┃ ┃ ┣ 📂 hooks/                 # Custom reusable logic (useAuth, useFetch)
- ┃ ┃ ┗ 📜 main.jsx               # Entry point
+ ┃ ┃ ┣ 📂 components/
+ ┃ ┃ ┃ ┣ 📂 common/              # EmptyState.jsx, ErrorBoundary.jsx, Loader.jsx, SEO.jsx
+ ┃ ┃ ┃ ┣ 📂 forms/               # KYCForm.jsx, LoginForm.jsx, SignupForm.jsx
+ ┃ ┃ ┃ ┣ 📂 layout/              # Footer.jsx, LandingNavbar.jsx, Navbar.jsx, Sidebar.jsx
+ ┃ ┃ ┃ ┗ 📂 ui/                  # 60+ Atomic UI Components (Buttons, Cards, Tables, etc.)
+ ┃ ┃ ┣ 📂 features/              # Redux Slices (auth, dashboard, kyc, recon)
+ ┃ ┃ ┣ 📂 hooks/                 # useAuth.js, useDebounce.js, useFetch.js, useLocalStorage.js
+ ┃ ┃ ┣ 📂 pages/                 # 20+ specialized B2B screens (Marketplace, Wallet, etc.)
+ ┃ ┃ ┣ 📂 services/              # api.js, cloudinary.js, firebase.js, openai.js
+ ┃ ┃ ┣ 📂 store/                 # Redux Store configuration
+ ┃ ┃ ┣ 📂 utils/                 # constants.js, helpers.js, storage.js, validators.js
+ ┃ ┃ ┣ 📜 App.jsx                # Main Application Logic & Routing
+ ┃ ┃ ┗ 📜 main.jsx               # React Entry point
  ┃
  ┣ 📂 backend/                   # ⚙️ Node.js API (Express, Mongoose)
- ┃ ┣ 📂 src/
- ┃ ┃ ┣ 📂 controllers/           # Request handlers (Auth, Payment, KYC)
- ┃ ┃ ┣ 📂 models/                # DB Schemas (User, Transaction, Invoice)
- ┃ ┃ ┣ 📂 middleware/            # Auth, Error, Upload handlers
- ┃ ┃ ┗ 📜 server.js              # Server bootstrap
+ ┃ ┣ 📂 config/                  # cloudinary.js, db.js, razorpay.js
+ ┃ ┣ 📂 controllers/             # auth, dashboard, kyc, payment, user controllers
+ ┃ ┃ ┣ 📜 authController.js
+ ┃ ┃ ┣ 📜 dashboardController.js
+ ┃ ┃ ┣ 📜 kycController.js
+ ┃ ┃ ┣ 📜 paymentController.js
+ ┃ ┃ ┗ 📜 userController.js
+ ┃ ┣ 📂 middleware/              # auth, error, upload, validation middleware
+ ┃ ┣ 📂 models/                  # Mongoose Schemas (User, Transaction, Invoice, etc.)
+ ┃ ┣ 📂 routes/                  # API Endpoints (Auth, Users, Payments, etc.)
+ ┃ ┣ 📂 services/                # notificationService.js, reconciliationService.js
+ ┃ ┣ 📂 utils/                   # cloudinary, email, token generation, logger
+ ┃ ┣ 📂 validations/             # auth and kyc validations
+ ┃ ┗ 📜 server.js                # Express Server Bootstrap
 ```
 
 ---
