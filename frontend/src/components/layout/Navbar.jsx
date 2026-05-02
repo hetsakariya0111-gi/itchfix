@@ -8,11 +8,12 @@ const Navbar = () => {
   });
 
   useEffect(() => {
+    const root = document.documentElement;
     if (isDark) {
-      document.documentElement.classList.remove('light');
+      root.classList.remove('light');
       localStorage.setItem('theme', 'dark');
     } else {
-      document.documentElement.classList.add('light');
+      root.classList.add('light');
       localStorage.setItem('theme', 'light');
     }
   }, [isDark]);

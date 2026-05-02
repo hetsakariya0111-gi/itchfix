@@ -31,7 +31,8 @@
   --radius-pill: 20px;
 }
 
-@theme variant(light) {
+/* Light mode overrides */
+.light {
   --color-page-bg: #F8FAFC;
   --color-card-bg: #FFFFFF;
   --color-sidebar-bg: #F1F5F9;
