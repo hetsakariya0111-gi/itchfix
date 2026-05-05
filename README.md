@@ -16,9 +16,7 @@
 "We found MSME deals failing because of 45-day payment delays and lack of trust between partners. TrustBiz fixes that."
 
 ### MISSION CRITICAL LINKS
-[Live Project](#) | [YouTube Demo](#) | [Figma Design](https://www.figma.com/proto/fLOpIySbuJA4Kd8L8Cq7vu/my-1st-asgn?page-id=51%3A7&node-id=430-5333)
-
-[Postman Docs](#) | [Backend API](#)
+[Live Project](#) | [YouTube Demo](#) | [Figma Design](https://www.figma.com/proto/fLOpIySbuJA4Kd8L8Cq7vu/my-1st-asgn?page-id=51%3A7&node-id=430-5333) | [Postman Docs](./trustbiz_postman_collection.json)
 
 ---
 
