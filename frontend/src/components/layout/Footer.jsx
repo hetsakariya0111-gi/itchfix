@@ -1,7 +1,22 @@
 import React from 'react';
 import { ShieldCheck, Globe, Mail, MessageSquare, MapPin, Phone, Info } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
+  const platformLinks = [
+    { name: 'Dashboard', path: '/dashboard' },
+    { name: 'Marketplace', path: '/marketplace' },
+    { name: 'Supplier Network', path: '/suppliers' },
+    { name: 'Escrow Service', path: '/escrow' }
+  ];
+
+  const resourceLinks = [
+    { name: 'Help Center', path: '/support' },
+    { name: 'Pricing', path: '/pricing' },
+    { name: 'KYC Onboarding', path: '/kyc' },
+    { name: 'Settings', path: '/settings' }
+  ];
+
   return (
     <footer className="bg-card-bg border-t border-border-main pt-20 pb-10 overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-6">
@@ -20,9 +35,9 @@ const Footer = () => {
             </p>
             <div className="flex items-center gap-4">
               {[Globe, MessageSquare, Mail, Info].map((Icon, idx) => (
-                <a key={idx} href="#" className="w-9 h-9 rounded-full border border-border-main flex items-center justify-center text-text-ghost hover:text-trust-teal hover:border-trust-teal/30 transition-all">
+                <Link key={idx} to="/support" className="w-9 h-9 rounded-full border border-border-main flex items-center justify-center text-text-ghost hover:text-trust-teal hover:border-trust-teal/30 transition-all">
                   <Icon size={18} />
-                </a>
+                </Link>
               ))}
             </div>
           </div>
@@ -31,9 +46,9 @@ const Footer = () => {
           <div className="lg:col-span-2 space-y-6">
             <h4 className="text-[11px] font-bold text-text-primary uppercase tracking-[0.2em]">Platform</h4>
             <ul className="space-y-4">
-              {['Features', 'Smart Escrow', 'Supplier Network', 'TrustScore'].map(link => (
-                <li key={link}>
-                  <a href="#" className="text-sm text-text-muted hover:text-trust-teal transition-colors">{link}</a>
+              {platformLinks.map(link => (
+                <li key={link.name}>
+                  <Link to={link.path} className="text-sm text-text-muted hover:text-trust-teal transition-colors">{link.name}</Link>
                 </li>
               ))}
             </ul>
@@ -43,9 +58,9 @@ const Footer = () => {
           <div className="lg:col-span-2 space-y-6">
             <h4 className="text-[11px] font-bold text-text-primary uppercase tracking-[0.2em]">Resources</h4>
             <ul className="space-y-4">
-              {['MSME Guide', 'Case Studies', 'Pricing', 'API Docs'].map(link => (
-                <li key={link}>
-                  <a href="#" className="text-sm text-text-muted hover:text-trust-teal transition-colors">{link}</a>
+              {resourceLinks.map(link => (
+                <li key={link.name}>
+                  <Link to={link.path} className="text-sm text-text-muted hover:text-trust-teal transition-colors">{link.name}</Link>
                 </li>
               ))}
             </ul>
