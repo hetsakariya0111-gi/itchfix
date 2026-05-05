@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, Zap, Shield, Building, Info } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 import Button from '../../components/ui/Button';
 import LandingNavbar from '../../components/layout/LandingNavbar';
 import Footer from '../../components/layout/Footer';
 import Toast from '../../components/ui/Toast';
 
 const Pricing = () => {
+  const { pathname } = useLocation();
   const [isAnnual, setIsAnnual] = useState(true);
   const [toasts, setToasts] = useState([]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const addToast = (message, type = 'success') => {
     const id = Date.now();

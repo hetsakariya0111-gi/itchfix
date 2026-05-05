@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 import { 
   BookOpen, 
   Play, 
@@ -18,9 +19,14 @@ import Footer from '../../components/layout/Footer';
 import Toast from '../../components/ui/Toast';
 
 const Resources = () => {
+  const { pathname } = useLocation();
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [toasts, setToasts] = useState([]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   const categories = ['All', 'Guides', 'Case Studies', 'Video Tutorials', 'Legal'];
 
